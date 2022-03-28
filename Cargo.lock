@@ -33,6 +33,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
 
 [[package]]
+name = "catchssebyrust"
+version = "0.1.0"
+dependencies = [
+ "futures",
+ "reqwest-eventsource",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
 name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -531,16 +541,6 @@ dependencies = [
  "pin-project-lite",
  "reqwest",
  "thiserror",
-]
-
-[[package]]
-name = "reqwest_eventsource"
-version = "0.1.0"
-dependencies = [
- "futures",
- "reqwest-eventsource",
- "serde_json",
- "tokio",
 ]
 
 [[package]]
