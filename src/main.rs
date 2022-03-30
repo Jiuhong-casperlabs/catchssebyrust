@@ -18,32 +18,10 @@ async fn main() -> Result<()> {
                 if v["DeployProcessed"]["execution_result"]["Success"] != Value::Null {
                     let deploy_hash = v["DeployProcessed"]["deploy_hash"].as_str().unwrap();
 
-                    let transfromsarray = v["DeployProcessed"]["execution_result"]["Success"]
-                        ["effect"]["transforms"]
-                        .as_array()
-                        .unwrap();
-
-                    let mut my_events;
-                    for obj in transfromsarray {
-                        if obj["transform"]["WriteCLValue"]["parsed"].is_array() {
-                            my_events = obj["transform"]["WriteCLValue"]["parsed"]
-                                .as_array()
-                                .unwrap();
-
-                            let mut output = false;
-                            for event in my_events.clone() {
-                                // customize your event here V V V
-                                if event["value"] == "account-hash-2293223427d59ebb331ac2221c3fcd1b3656a5cb72be924a6cdc9d52cdb6db0f" {
-                                    output= true;
-                                }
-                            }
-                            if output {
-                                println!("deploy_hash {} ", deploy_hash);
-                                for event in my_events {
-                                    println!("{}", event);
-                                }
-                            }
-                        }
+                    let pk = v["DeployProcessed"]["account"].as_str().unwrap();
+                    // Here is your customized public key
+                    if pk == "010e31a03ea026a8e375653573e0120c8cb96699e6c9721ae1ea98f896e6576ac3" {
+                        println!("deploy_hash is {}", deploy_hash);
                     }
                 }
             }
